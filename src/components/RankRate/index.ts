@@ -1,1 +1,3 @@
-export { default } from './RankRate'
+import RankRateBar from './RankRateBar'
+
+export { RankRateBar }

@@ -16,4 +16,9 @@ export type BaseAvatarProps = {
    * Default - md
    */
   size?: 'sm' | 'md' | 'lg'
+
+  /**
+   * Avatar Image
+   */
+  src: string
 }
