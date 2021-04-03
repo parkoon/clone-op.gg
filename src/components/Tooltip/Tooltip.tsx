@@ -1,5 +1,7 @@
-function Badge() {
-  return <div>Badge Components</div>
+import { FC } from 'react'
+
+const Tooltip: FC = () => {
+  return <div>Tooltip Components</div>
 }
 
-export default Badge
+export default Tooltip
