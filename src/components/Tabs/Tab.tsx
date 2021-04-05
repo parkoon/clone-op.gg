@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
+import styled from 'styled-components'
 
 type Props = {
   /**
@@ -7,13 +8,15 @@ type Props = {
   label: string
 
   /**
-   * Tab Key
+   * Tab Id
    */
-  key: string
+  id: string
 }
 
-const Tab: FC<Props> = () => {
-  return <div></div>
+const Tab: FC<Props> = ({ children, ...props }) => {
+  return <Wrapper {...props}>{children}</Wrapper>
 }
+
+const Wrapper = styled.div``
 
 export default Tab

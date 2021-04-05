@@ -19,6 +19,7 @@ declare module 'styled-components' {
         3: string
         4: string
         5: string
+        6: string
       }
     }
   }

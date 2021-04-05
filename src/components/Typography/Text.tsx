@@ -6,7 +6,7 @@ type Props = {
    * Text Color
    * Default - black
    */
-  color?: 'grey' | 'blue' | 'red' | 'green' | 'orange' | 'black' | 'white'
+  color?: string
 
   /**
    * Font Weight
@@ -19,6 +19,12 @@ type Props = {
    * Default - 14
    */
   fontSize?: number
+
+  /**
+   * Display Block
+   * Default - false
+   */
+  block?: boolean
 }
 
 const Text = styled.span<Props>`
@@ -27,10 +33,15 @@ const Text = styled.span<Props>`
     css`
       font-weight: bold;
     `};
+  ${({ block }) =>
+    block &&
+    css`
+      display: block;
+    `};
 
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : '14px')};
 
-  color: ${({ color, theme }) => (color ? theme.color[color] : theme.color.black)};
+  color: ${({ color, theme }) => color || theme.color.black};
 `
 
 export default Text
