@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import styled from 'styled-components'
 import theme from '../../assets/styles/theme'
 import Image from '../Image'
@@ -7,7 +8,7 @@ import { IMAGE_SIZE } from './constants'
 type Props = {
   src: string
   title: string
-  subtitle?: string
+  subtitle?: string | ReactNode
   size?: keyof typeof IMAGE_SIZE
 }
 function ChampionProfile({ size = 'md', src, title, subtitle }: Props) {
@@ -20,10 +21,12 @@ function ChampionProfile({ size = 'md', src, title, subtitle }: Props) {
           {title}
         </Text>
 
-        {subtitle && (
+        {typeof subtitle === 'string' ? (
           <Text fontSize={11} color={theme.color.grey[4]}>
             {subtitle}
           </Text>
+        ) : (
+          <>{subtitle}</>
         )}
       </Info>
     </Wrapper>

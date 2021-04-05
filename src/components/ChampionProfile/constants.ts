@@ -1,6 +1,6 @@
 const IMAGE_SIZE = {
-  xs: 16,
-  sm: 32,
+  xs: 15,
+  sm: 35,
   md: 45,
 }
 
