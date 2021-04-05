@@ -10,6 +10,7 @@ declare module 'styled-components' {
       green: string
       orange: string
       cement: string
+      purple: string
       gold: string
       border: string
       grey: {

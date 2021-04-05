@@ -10,6 +10,7 @@ const theme: DefaultTheme = {
     orange: '#e19205',
     cement: '#2c3548',
     gold: '#eabd56',
+    purple: '#8c51c5',
     border: '#f2f2f2',
     grey: {
       0: '#f2f2f2',
