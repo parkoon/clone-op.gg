@@ -46,7 +46,7 @@ const Text = styled.span<Props>`
     `};
 
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : 'inherit')};
-  color: ${({ color, theme }) => color || theme.color.black};
+  color: ${({ color, theme }) => color || 'inherit'};
   text-align: ${({ align }) => align || 'left'};
 `
 
