@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components'
 
-const BaseDivider = styled.div<{ gutter?: number; size: number }>`
+const BaseDivider = styled.div<{ gutter?: number; size?: number }>`
   display: inline-block;
   background: ${({ theme }) => theme.color.grey[3]};
 `
 export const VerticalDivider = styled(BaseDivider)`
   width: 1px;
-  height: ${({ size }) => `${size}px`};
+  height: ${({ size }) => (size ? `${size}px` : '100%')};
 
   ${({ gutter }) =>
     gutter &&
@@ -17,7 +17,7 @@ export const VerticalDivider = styled(BaseDivider)`
 `
 
 export const HorizontalDivider = styled(BaseDivider)`
-  width: ${({ size }) => `${size}px`};
+  width: ${({ size }) => (size ? `${size}px` : '100%')};
   height: 1px;
 
   ${({ gutter }) =>

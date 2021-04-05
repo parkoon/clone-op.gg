@@ -28,20 +28,20 @@ const Tabs: FC<Props> = ({ defaultActiveId, children }) => {
         {Children.map(children, (child, index) => {
           if (!isValidElement(child)) return
           return (
-            <Menu
+            <TabMenu
               key={index}
               onClick={() => handleMenuClick(child.props.id)}
               active={child.props.id === activeTabId}
             >
               {child.props.label}
-            </Menu>
+            </TabMenu>
           )
         })}
       </Header>
       <Body>
         {Children.map(children, (child, index) => {
           if (!isValidElement(child) || child.props.id !== activeTabId) return
-          return <Box key={index}>{child}</Box>
+          return <div key={index}>{child}</div>
         })}
       </Body>
     </Wrapper>
@@ -58,9 +58,11 @@ const Header = styled.header<{ length: number }>`
   text-align: center;
 `
 
-const Menu = styled.div<{ active: boolean }>`
-  padding: 15px 38px;
+const TabMenu = styled.div<{ active: boolean }>`
+  font-size: 12px;
+  padding: 15px 35px;
   cursor: pointer;
+  color: ${({ theme }) => theme.color.grey[6]};
 
   &:not(:last-child) {
     border-right: 1px solid ${({ theme }) => theme.color.grey[3]};
@@ -70,10 +72,11 @@ const Menu = styled.div<{ active: boolean }>`
     active
       ? css`
           font-weight: bold;
+          color: ${({ theme }) => theme.color.disabled};
           background: ${({ theme }) => theme.color.grey[1]};
         `
       : css`
-          color: ${({ theme }) => theme.color.grey[4]};
+          color: ${({ theme }) => theme.color.disabled};
           border-bottom: 1px solid ${({ theme }) => theme.color.grey[3]};
         `}
 `
@@ -81,6 +84,4 @@ const Menu = styled.div<{ active: boolean }>`
 const Body = styled.section`
   background: ${({ theme }) => theme.color.grey[1]};
 `
-const Box = styled.div``
-
 export default Tabs

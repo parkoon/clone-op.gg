@@ -9,7 +9,7 @@ function ChampionRankRateCard() {
     <Wrapper>
       <ChampionProfile title="신지드" src="" />
       <Column>
-        <Text color={theme.color.grey[6]} fontSize={13} block bold>
+        <Text color={theme.color.disabled} fontSize={13} block bold>
           69%
         </Text>
       </Column>
@@ -22,8 +22,9 @@ function ChampionRankRateCard() {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 27px 124px;
   align-items: center;
+  grid-gap: 12px;
 
   padding: 10px 15px;
 

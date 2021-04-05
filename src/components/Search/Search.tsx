@@ -16,11 +16,11 @@ function Search({ onChange, ...props }: Props) {
 
 const Wrapper = styled.div`
   position: relative;
-  width: 260px;
 `
 const Input = styled.input`
   padding: 8px 35px 8px 14px;
   outline: none;
+  border: none;
   width: 100%;
 
   &::placeholder {

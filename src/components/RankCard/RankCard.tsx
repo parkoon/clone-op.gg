@@ -1,11 +1,11 @@
 import styled from 'styled-components'
+import theme from '../../assets/styles/theme'
 import { Text } from '../Typography'
 import { POSITION_MAP } from './constants'
 import { BaseRankCardProps } from './types'
 
 function RankCard({
   solo,
-  unRank,
   position,
   gameCount,
   rank,
@@ -13,51 +13,22 @@ function RankCard({
   win,
   loss,
   winningRate,
+  wrapperStyle,
 }: BaseRankCardProps) {
-  if (unRank) {
-    return (
-      <Wrapper>
-        <Image src="https://picsum.photos/id/237/200/300" />
-
-        <InfoWrapper>
-          <Text fontSize={11}>{solo ? '솔로' : '자유 5:5'} 랭크</Text>
-          <Text fontSize={12} bold>
-            {POSITION_MAP[position]} (총 {gameCount}게임)
-          </Text>
-          <Text fontSize={15} bold color="blue">
-            {rank}
-          </Text>
-          <div>
-            <Text fontSize={12} bold>
-              {lp} LP
-            </Text>
-            <Text fontSize={12}>
-              / {win}승 {loss}패
-            </Text>
-          </div>
-          <Text fontSize={12}>승률 {winningRate}%</Text>
-        </InfoWrapper>
-      </Wrapper>
-    )
-  }
-
   return (
-    <Wrapper>
+    <Wrapper style={wrapperStyle}>
       <Image src="https://picsum.photos/id/237/200/300" />
-
       <InfoWrapper>
         <Text fontSize={11}>{solo ? '솔로' : '자유 5:5'} 랭크</Text>
-        <Text fontSize={12} bold>
+        <Text bold>
           {POSITION_MAP[position]} (총 {gameCount}게임)
         </Text>
-        <Text fontSize={15} bold color="blue">
+        <Text fontSize={15} bold color={theme.color.blue}>
           {rank}
         </Text>
         <div>
-          <Text fontSize={12} bold>
-            {lp} LP
-          </Text>
-          <Text fontSize={12}>
+          <Text bold>{lp} LP</Text>
+          <Text>
             / {win}승 {loss}패
           </Text>
         </div>
@@ -78,6 +49,7 @@ const InfoWrapper = styled.div`
   display: grid;
   grid-template-rows: repeat(5, 1fr);
   padding-left: 8px;
+  font-size: 12px;
 `
 
 const Image = styled.img`

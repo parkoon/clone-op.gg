@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import theme from '../../assets/styles/theme'
 import ChampionProfile from '../ChampionProfile'
+import KDAPoint from '../KDAPoint'
 import { Text } from '../Typography'
 
 function ChampionWinRateCard() {
@@ -11,7 +12,7 @@ function ChampionWinRateCard() {
         <Text color={theme.color.grey[6]} fontSize={13} block bold>
           2.47:1 평점
         </Text>
-        <Text fontSize={11} color={theme.color.grey[4]}>
+        <Text fontSize={11} color={theme.color.disabled}>
           6.6 / 3.0 / 6.8
         </Text>
       </Column>
@@ -29,9 +30,9 @@ function ChampionWinRateCard() {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 70px 34px;
   align-items: center;
-
+  grid-gap: 20px;
   padding: 10px 15px;
 
   &:not(:last-child) {

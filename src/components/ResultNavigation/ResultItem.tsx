@@ -14,7 +14,7 @@ type Props = {
 }
 
 const ResultItem: FC<Props> = ({ children, ...props }) => {
-  return <li {...props}>{children}</li>
+  return <span {...props} />
 }
 
 export default ResultItem

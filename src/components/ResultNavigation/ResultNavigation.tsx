@@ -45,7 +45,7 @@ const Wrapper = styled.nav<{ length: number }>`
   border: solid 1px ${({ theme }) => theme.color.grey[3]};
 `
 
-const Menu = styled.ul<{ active: boolean }>`
+const Menu = styled.div<{ active: boolean }>`
   font-size: 12px;
   padding: 10px 0px;
   margin: 0 15px;

@@ -155,7 +155,6 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 60px 110px 1fr 80px 110px 100px 100px 30px;
   border: 1px solid ${({ theme }) => theme.color.grey[2]};
-
   background: ${({ theme }) => lighten(0.25, theme.color.red)};
 `
 const Column = styled.div`

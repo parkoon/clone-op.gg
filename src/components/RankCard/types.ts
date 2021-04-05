@@ -1,3 +1,4 @@
+import { CSSProperties } from 'styled-components'
 import { POSITION_MAP } from './constants'
 
 export type BaseRankCardProps = {
@@ -10,4 +11,5 @@ export type BaseRankCardProps = {
   win: number
   loss: number
   winningRate: number
+  wrapperStyle?: CSSProperties
 }

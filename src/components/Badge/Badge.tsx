@@ -32,8 +32,9 @@ const Wrapper = styled.span<Props>`
   border-radius: ${({ shape }) => (shape === 'round' ? '100px' : '2px')};
   padding: 4px 7px;
   background: ${({ backgroundColor, theme }) =>
-    backgroundColor ? theme.color[backgroundColor] : theme.color.grey[0]};
-  color: ${({ theme, reverse }) => (reverse ? theme.color.white : theme.color.grey[1])};
+    backgroundColor ? theme.color[backgroundColor] : theme.color.grey[2]};
+  color: ${({ theme, reverse }) => (reverse ? theme.color.white : theme.color.grey[6])};
+  border: 1px solid ${({ theme }) => theme.color.grey[3]};
   font-size: 11px;
 `
 

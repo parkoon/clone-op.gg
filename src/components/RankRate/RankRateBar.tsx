@@ -17,7 +17,7 @@ function RankRateBar({ win, loss }: BaseRankRateProps) {
 }
 
 const Wrapper = styled.div`
-  width: 124px;
+  width: 100%;
   height: 24px;
   display: flex;
   color: ${({ theme }) => theme.color.white};
