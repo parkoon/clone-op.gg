@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { lighten } from 'polished'
+import theme from '../../assets/styles/theme'
 type Props = {
   /**
    * Badge Share
@@ -12,7 +13,7 @@ type Props = {
    * Badge Background Color
    * Default - Grey
    */
-  backgroundColor?: 'grey' | 'orange' | 'tomato'
+  backgroundColor?: keyof typeof theme.color
 
   /**
    * Reverse of Font Color
@@ -23,15 +24,16 @@ type Props = {
   reverse?: boolean
 }
 
-const Badge: FC<Props> = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>
+const Badge: FC<Props> = ({ children, ...props }) => {
+  return <Wrapper {...props}>{children}</Wrapper>
 }
 
-const Wrapper = styled.span`
-  border-radius: 2px;
-  padding: 5px;
-  background: ${({ theme }) => theme.color.grey[0]};
-  color: ${({ theme }) => theme.color.grey[1]};
+const Wrapper = styled.span<Props>`
+  border-radius: ${({ shape }) => (shape === 'round' ? '100px' : '2px')};
+  padding: 4px 7px;
+  background: ${({ backgroundColor, theme }) =>
+    backgroundColor ? theme.color[backgroundColor] : theme.color.grey[0]};
+  color: ${({ theme, reverse }) => (reverse ? theme.color.white : theme.color.grey[1])};
   font-size: 11px;
 `
 

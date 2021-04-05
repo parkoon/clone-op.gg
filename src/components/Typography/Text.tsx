@@ -25,6 +25,12 @@ type Props = {
    * Default - false
    */
   block?: boolean
+
+  /**
+   * Text Align
+   * Default - left
+   */
+  align?: 'left' | 'center' | 'right'
 }
 
 const Text = styled.span<Props>`
@@ -40,8 +46,8 @@ const Text = styled.span<Props>`
     `};
 
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : 'inherit')};
-
   color: ${({ color, theme }) => color || theme.color.black};
+  text-align: ${({ align }) => align || 'left'};
 `
 
 export default Text
