@@ -39,7 +39,7 @@ const Text = styled.span<Props>`
       display: block;
     `};
 
-  font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : '14px')};
+  font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : 'inherit')};
 
   color: ${({ color, theme }) => color || theme.color.black};
 `
