@@ -12,6 +12,7 @@ import { Inventory, InventoryItem } from '../Inventory'
 import KDAPoint from '../KDAPoint'
 import OpScoreBadge from '../OpScoreBadge'
 import { Text } from '../Typography'
+import WardIcon from '../WardIcon'
 import DetailGameItem from './DetailGameItem'
 
 dayjs.locale('ko')
@@ -88,25 +89,16 @@ function GameItemCard({
             <InventoryItem key={index} src={imageUrl} />
           ))}
         </Inventory>
-
-        {ward.sightWardsBought > 0 && (
-          <Image
-            src="src"
-            width="20"
-            height="20"
-            label={<Text>제어와드 {ward.sightWardsBought}</Text>}
-            wrapperStyle={{ justifyContent: 'center', marginTop: 10 }}
-          />
-        )}
-        {ward.visionWardsBought > 0 && (
-          <Image
-            src="src"
-            width="20"
-            height="20"
-            label={<Text>제어와드 {ward.visionWardsBought}</Text>}
-            wrapperStyle={{ justifyContent: 'center', marginTop: 10 }}
-          />
-        )}
+        <WardIcon
+          type="BlueWardIcon"
+          count={ward.sightWardsBought}
+          wrapperStyle={{ marginTop: 10 }}
+        />
+        <WardIcon
+          type="RedWardIcon"
+          count={ward.visionWardsBought}
+          wrapperStyle={{ marginTop: 10 }}
+        />
       </Column>
       <Column style={{ padding: '10px 0' }}>
         <DetailGameItem gameId={gameId} />
