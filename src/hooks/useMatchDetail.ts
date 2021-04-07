@@ -1,5 +1,4 @@
 import { AxiosResponse } from 'axios'
-import React from 'react'
 import useSWR from 'swr'
 import fetcher from '../lib/fetcher'
 import { Team } from '../model/Team'
@@ -13,6 +12,7 @@ function useFetchMatchDetail(gameId: string) {
     fetcher,
     {
       revalidateOnMount: !!query.get('username'),
+      revalidateOnFocus: false,
     }
   )
 

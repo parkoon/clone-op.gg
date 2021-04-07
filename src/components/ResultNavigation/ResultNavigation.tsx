@@ -1,4 +1,4 @@
-import { Children, FC, isValidElement, useEffect, useState } from 'react'
+import { Children, FC, isValidElement, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 type Props = {

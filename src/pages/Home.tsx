@@ -4,8 +4,6 @@ import LeagueSection from '../components/LeagueSection'
 import MatchedGameSection from '../components/MatchedGameSection'
 import MostChampionSection from '../components/MostChampionSection'
 import SummonerProfile from '../components/SummonerProfile'
-import { useSummonerInfo } from '../hooks/useSummonerInfo'
-import useQuery from '../hooks/useQuery'
 import Container from '../layout/Container'
 
 function SearchSummoner() {

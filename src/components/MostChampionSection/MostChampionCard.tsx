@@ -3,7 +3,6 @@ import theme from '../../assets/styles/theme'
 import calculator from '../../lib/calculator'
 import { Champion } from '../../model/Champion'
 import ChampionProfile from '../ChampionProfile'
-import KDAPoint from '../KDAPoint'
 import { Text } from '../Typography'
 
 function MostChampionCard({

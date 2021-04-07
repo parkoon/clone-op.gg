@@ -1,41 +1,21 @@
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 import relativeTime from 'dayjs/plugin/relativeTime'
-
-import { lighten } from 'polished'
 import { useMemo } from 'react'
 import { AiFillCaretDown } from 'react-icons/ai'
 import styled, { css } from 'styled-components'
-import theme from '../../assets/styles/theme'
 import formatter from '../../lib/formatter'
 import { Game } from '../../model/Game'
-import OpScoreBadge from '../OpScoreBadge'
 import { HorizontalDivider } from '../Divider'
 import Image from '../Image'
 import { Inventory, InventoryItem } from '../Inventory'
 import KDAPoint from '../KDAPoint'
+import OpScoreBadge from '../OpScoreBadge'
 import { Text } from '../Typography'
 import DetailGameItem from './DetailGameItem'
 
 dayjs.locale('ko')
 dayjs.extend(relativeTime)
-
-// champion: {imageUrl: "https://opgg-static.akamaized.net/images/lol/champion/Malzahar.png", level: 6}
-// createDate: 1617738740
-// gameId: "12508799"
-// gameLength: 597
-// gameType: "무작위 총력전"
-// isWin: true
-// items: (6) [{…}, {…}, {…}, {…}, {…}, {…}]
-// mapInfo: null
-// mmr: 1181
-// needRenew: false
-// peak: (2) ["https://opgg-static.akamaized.net/images/lol/perk/8229.png", "https://opgg-static.akamaized.net/images/lol/perkStyle/8300.png"]
-// spells: (2) [{…}, {…}]
-// stats: {general: {…}, ward: {…}}
-// summonerId: "8497673"
-// summonerName: "머치고개"
-// tierRankShort: "C1"
 
 const MAX_ITEM_LENGTH = 8
 function GameItemCard({

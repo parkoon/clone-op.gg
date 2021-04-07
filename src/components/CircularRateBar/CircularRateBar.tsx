@@ -15,7 +15,7 @@ function CircularRateBar({ win, loss }: Props) {
   ])
 
   return (
-    <Wrapper data-winRate={winRate}>
+    <Wrapper data-winrate={`${winRate}`}>
       <Header>
         {win + loss}전 {win}승 {loss}패
       </Header>
@@ -31,16 +31,16 @@ function CircularRateBar({ win, loss }: Props) {
           cx="45"
           cy="45"
           fill="transparent"
-          stroke-dasharray="219.9"
-          stroke-dashoffset="0"
+          strokeDasharray="219.9"
+          strokeDashoffset="0"
         />
         <circle
           r={RADIUS}
           cx="45"
           cy="45"
           fill="transparent"
-          stroke-dasharray="219.9"
-          stroke-dashoffset="170"
+          strokeDasharray="219.9"
+          strokeDashoffset="170"
         />
       </SVG>
     </Wrapper>
@@ -58,7 +58,7 @@ const Wrapper = styled.div`
     top: calc(50% + 10px);
     font-weight: bold;
     transform: translate(-50%, -50%);
-    content: attr(data-winRate) '%';
+    content: attr(data-winrate) '%';
   }
 `
 

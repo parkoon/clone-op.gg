@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import theme from '../../assets/styles/theme'
 import calculator from '../../lib/calculator'
-import { Champion } from '../../model/Champion'
 import { WinRate } from '../../model/WinRate'
 import ChampionProfile from '../ChampionProfile'
 import { RankRateBar } from '../RankRate'

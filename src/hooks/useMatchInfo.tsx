@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios'
-import { createContext, FC, useContext, useEffect, useState } from 'react'
+import { createContext, FC, useContext, useEffect, useMemo, useState } from 'react'
 import useSWR from 'swr'
 import useQuery from './useQuery'
 import fetcher from '../lib/fetcher'
@@ -27,15 +27,15 @@ export const MatchInfoProvider: FC = ({ children }) => {
     AxiosResponse<{ champions: Champion[]; games: Game[]; positions: Position[]; summary: Summary }>
   >(`/api/summoner/${query.get('username')}/matches`, fetcher, {
     revalidateOnMount: !!query.get('username'),
+    revalidateOnFocus: false,
   })
 
   const initialLoading = !data && !error
 
-  const mostChampions = data?.data.champions || ([] as Champion[])
-  const allGames = data?.data.games || ([] as Game[])
-
-  const positions = data?.data.positions || ([] as Position[])
-  const summary = data?.data.summary || ({} as Summary)
+  const mostChampions = useMemo(() => data?.data.champions || ([] as Champion[]), [data])
+  const allGames = useMemo(() => data?.data.games || ([] as Game[]), [data])
+  const positions = useMemo(() => data?.data.positions || ([] as Position[]), [data])
+  const summary = useMemo(() => data?.data.summary || ({} as Summary), [data])
 
   useEffect(() => {
     if (initialLoading) return

@@ -13,7 +13,7 @@ function LeagueSection() {
   return (
     <article>
       {leagues.map((league, index) => (
-        <LeagueCard {...league} />
+        <LeagueCard key={index} {...league} />
       ))}
 
       {/* <UnLeagueCard wrapperStyle={{ marginBottom: 8 }} /> */}

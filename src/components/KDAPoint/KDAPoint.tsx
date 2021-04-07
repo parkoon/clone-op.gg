@@ -2,13 +2,13 @@ import styled, { css } from 'styled-components'
 import { FONT_SIZE } from './constants'
 
 type FontSizeKey = keyof typeof FONT_SIZE
-type KDAPoint = {
+type Props = {
   kill: number
   death: number
   assist: number
   size?: FontSizeKey
 }
-function KDAPoint({ size = 'md', kill, death, assist }: KDAPoint) {
+function KDAPoint({ size = 'md', kill, death, assist }: Props) {
   return (
     <Wrapper size={size}>
       <Point divider>{kill}</Point>

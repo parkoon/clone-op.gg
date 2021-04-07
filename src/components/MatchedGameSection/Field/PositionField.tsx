@@ -1,4 +1,3 @@
-import React from 'react'
 import theme from '../../../assets/styles/theme'
 import calculator from '../../../lib/calculator'
 import { Position } from '../../../model/Position'
@@ -10,11 +9,12 @@ type Props = {
   positions: Position[]
 }
 
-const positionMap = {
-  ADC: '바텀',
+const positionMap: Record<string, string> = {
+  ADC: '원딜',
   TOP: '탑',
   MID: '미드',
   SUP: '서포트',
+  JNG: '정글',
 }
 function PositionField({ positions }: Props) {
   return (
@@ -26,7 +26,7 @@ function PositionField({ positions }: Props) {
       {positions.map(({ position, wins, losses }, index) => (
         <ChampionProfile
           key={index}
-          title={position}
+          title={positionMap[position]}
           subtitle={
             <>
               <Text fontSize={11} color="red" bold>

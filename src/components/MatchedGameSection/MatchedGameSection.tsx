@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import { useMatchInfo } from '../../hooks/useMatchInfo'
-import GameItemCard from '../GameItemCard'
 import { ResultItem, ResultNavigation } from '../ResultNavigation'
-import { MostChampionField, SummaryField, PositionField, GameResultField } from './Field'
+import { GameResultField, MostChampionField, PositionField, SummaryField } from './Field'
 
 function MatchedGameSection() {
   const { mostChampions, summary, games, positions, setGameType } = useMatchInfo()

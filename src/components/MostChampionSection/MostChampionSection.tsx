@@ -7,15 +7,15 @@ function MostChampionSection() {
   const { mostChampions, recentWinRate } = useMostChampionInfo()
 
   return (
-    <Tabs defaultActiveId="1">
-      <Tab label="챔피언 승률" id="1">
+    <Tabs defaultActiveId="champion">
+      <Tab label="챔피언 승률" id="champion">
         {mostChampions.map((champion, index) => (
-          <MostChampionCard key={index} {...champion} />
+          <MostChampionCard {...champion} key={`mc-${index}`} />
         ))}
       </Tab>
-      <Tab label="7일간 랭크 승률" id="2">
+      <Tab label="7일간 랭크 승률" id="rate">
         {recentWinRate.map((winRate, index) => (
-          <MostChampionWeekCard key={index} {...winRate} />
+          <MostChampionWeekCard {...winRate} key={`wr-${index}`} />
         ))}
       </Tab>
     </Tabs>

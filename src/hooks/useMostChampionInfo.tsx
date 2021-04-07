@@ -20,6 +20,7 @@ export const MostChampionInfoProvider: FC = ({ children }) => {
     AxiosResponse<{ champions: Champion[]; recentWinRate: WinRate[] }>
   >(`/api/summoner/${query.get('username')}/mostInfo`, fetcher, {
     revalidateOnMount: !!query.get('username'),
+    revalidateOnFocus: false,
   })
 
   const initialLoading = !data && !error

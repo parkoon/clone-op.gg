@@ -1,9 +1,9 @@
 import { AxiosResponse } from 'axios'
-import { createContext, FC, useContext, useState } from 'react'
+import { createContext, FC, useContext } from 'react'
 import useSWR from 'swr'
-import useQuery from './useQuery'
-import { Summoner } from '../model/Summoner'
 import fetcher from '../lib/fetcher'
+import { Summoner } from '../model/Summoner'
+import useQuery from './useQuery'
 
 type SummonerInfoContextType = {
   summoner: Summoner
@@ -17,7 +17,7 @@ export const SummonerInfoProvider: FC = ({ children }) => {
   const { data, error } = useSWR<AxiosResponse<{ summoner: Summoner }>>(
     `/api/summoner/${query.get('username')}`,
     fetcher,
-    { revalidateOnMount: !!query.get('username') }
+    { revalidateOnMount: !!query.get('username'), revalidateOnFocus: false }
   )
 
   const initialLoading = !data && !error
