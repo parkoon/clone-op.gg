@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import theme from '../../assets/styles/theme'
 import calculator from '../../lib/calculator'
+import formatter from '../../lib/formatter'
 import { Champion } from '../../model/Champion'
 import ChampionProfile from '../ChampionProfile'
 import { Text } from '../Typography'
@@ -21,7 +22,7 @@ function MostChampionCard({
   return (
     <Wrapper>
       <ChampionProfile
-        title={name}
+        title={formatter.dotdotdot(name)}
         subtitle={`CS ${cs} (${calculator.csPerMinute(cs)})`}
         src={imageUrl}
       />

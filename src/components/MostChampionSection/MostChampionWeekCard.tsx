@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import theme from '../../assets/styles/theme'
 import calculator from '../../lib/calculator'
+import formatter from '../../lib/formatter'
 import { WinRate } from '../../model/WinRate'
 import ChampionProfile from '../ChampionProfile'
 import { RankRateBar } from '../RankRate'
@@ -9,7 +10,7 @@ import { Text } from '../Typography'
 function MostChampionWeekCard({ name, imageUrl, wins, losses }: WinRate) {
   return (
     <Wrapper>
-      <ChampionProfile title={name} src={imageUrl} />
+      <ChampionProfile title={formatter.dotdotdot(name)} src={imageUrl} />
       <Column>
         <Text color={theme.color.disabled} fontSize={13} block bold>
           {calculator.winRate(wins, losses)}%
@@ -24,7 +25,7 @@ function MostChampionWeekCard({ name, imageUrl, wins, losses }: WinRate) {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 27px 124px;
+  grid-template-columns: 1fr 27px 120px;
   align-items: center;
   grid-gap: 7px;
 
