@@ -1,4 +1,4 @@
-import { Children, FC, isValidElement, useState } from 'react'
+import { Children, FC, isValidElement, useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 type Props = {
@@ -15,11 +15,12 @@ type Props = {
   onChange?(key: string): void
 }
 
-const ResultNavigation: FC<Props> = ({ defaultActiveId, children }) => {
+const ResultNavigation: FC<Props> = ({ defaultActiveId, children, onChange }) => {
   const [activeResultId, setActiveResultId] = useState(defaultActiveId)
 
   const handleMenuClick = (id: string) => {
     setActiveResultId(id)
+    onChange?.(id)
   }
 
   return (

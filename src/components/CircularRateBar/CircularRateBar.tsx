@@ -1,12 +1,10 @@
 import { useMemo } from 'react'
 import styled from 'styled-components'
-import { Text } from '../Typography'
 
 type Props = {
   win: number
   loss: number
 }
-
 const RADIUS = 35
 function CircularRateBar({ win, loss }: Props) {
   const circumference = useMemo(() => Math.PI * (RADIUS * 2), [])

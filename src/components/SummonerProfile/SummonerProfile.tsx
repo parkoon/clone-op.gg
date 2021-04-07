@@ -1,53 +1,37 @@
-import { ReactNode } from 'react'
 import styled from 'styled-components'
-import Badge from '../Badge'
+import { useSummonerInfo } from '../../hooks/useSummonerInfo'
+import TierBadge from '../TierBadge'
 import { Text } from '../Typography'
+import SummonerProfileIcon from './SummonerProfileIcon'
 
-type Props = {
-  /**
-   * Summoner Title
-   */
-  title: string | ReactNode
+function SummonerProfile() {
+  const { summoner, initialLoading } = useSummonerInfo()
 
-  /**
-   * Summoner Ranking
-   */
-  rank: number
+  if (initialLoading) return <span>로딩중</span>
 
-  /**
-   * Summoner Image
-   */
-  src: string
+  const {
+    ladderRank: { rank, rankPercentOfTop },
+    previousTiers,
+    profileBorderImageUrl,
+    profileImageUrl,
+    name,
+    level,
+  } = summoner
 
-  /**
-   * Summoner Level
-   */
-  level: number
-}
-function SummonerProfile({ src, level, title, rank }: Props) {
   return (
     <section>
       <Header>
-        <Badge>
-          <Text bold>S3</Text> Bronze
-        </Badge>
-        <Badge>
-          <Text bold>S3</Text> Bronze
-        </Badge>
-        <Badge>
-          <Text bold>S3</Text> Bronze
-        </Badge>
+        {previousTiers.map(({ tier, shortString }, index) => (
+          <TierBadge key={index} tier={tier} shortString={shortString} />
+        ))}
       </Header>
       <Body>
-        <ImageWrapper>
-          <Image src={src} />
-          <Level>{level}</Level>
-        </ImageWrapper>
-
+        <SummonerProfileIcon border={profileBorderImageUrl} icon={profileImageUrl} level={level} />
         <InfoWrapper>
-          <Title>{title}</Title>
+          <Title>{name}</Title>
           <Subtitle>
-            래더 랭킹 <Text bold>{rank.toLocaleString()}</Text>위 (상위 40.7%)
+            래더 랭킹 <Text bold>{rank.toLocaleString()}</Text>위 (상위
+            {rankPercentOfTop}%)
           </Subtitle>
         </InfoWrapper>
       </Body>
@@ -56,10 +40,10 @@ function SummonerProfile({ src, level, title, rank }: Props) {
 }
 
 const Header = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 68px);
-  grid-gap: 7px;
-  margin-bottom: 7px;
+  margin-bottom: 24px;
+  > span {
+    margin-right: 7px;
+  }
 `
 
 const Body = styled.div`
@@ -79,29 +63,13 @@ const Subtitle = styled.p`
   color: ${({ theme }) => theme.color.grey[6]};
 `
 
-const ImageWrapper = styled.div`
-  width: 120px;
-  height: 120px;
+const IconWrapper = styled.div`
   position: relative;
 `
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`
-
-const Level = styled.span`
-  position: absolute;
-  bottom: -11px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 100px;
-  width: 44px;
-  padding: 4px 0;
-  text-align: center;
-  color: ${({ theme }) => theme.color.gold};
-  border: 1px solid ${({ theme }) => theme.color.gold};
-  background: ${({ theme }) => theme.color.cement};
 `
 
 export default SummonerProfile

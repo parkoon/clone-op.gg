@@ -21,7 +21,7 @@ type Props = {
 function Image({ label, wrapperStyle, ...props }: Props) {
   return (
     <Wrapper style={wrapperStyle}>
-      <Img {...props} src="https://picsum.photos/id/237/200/300" />
+      <Img {...props} />
       {label && <LabelWrapper>{label}</LabelWrapper>}
     </Wrapper>
   )

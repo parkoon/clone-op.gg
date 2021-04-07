@@ -1,11 +1,7 @@
 import { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 
-type Props = {
-  onChange?(value: string): void
-} & Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'>
-
-function Search({ onChange, ...props }: Props) {
+function Search(props: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <Wrapper>
       <Input {...props} />
@@ -17,6 +13,7 @@ function Search({ onChange, ...props }: Props) {
 const Wrapper = styled.div`
   position: relative;
 `
+
 const Input = styled.input`
   padding: 8px 35px 8px 14px;
   outline: none;

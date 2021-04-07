@@ -9,7 +9,7 @@ type Props = {
 }
 function InventoryItem({ src }: Props) {
   if (!src) return <Empty />
-  return <Image src="https://picsum.photos/id/237/200/300" width="22" height="22" shape="square" />
+  return <Image src={src} width="22" height="22" shape="square" />
 }
 
 const Empty = styled.div`

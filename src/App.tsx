@@ -1,16 +1,20 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Compose from './components/Compose'
+import { MatchInfoProvider } from './hooks/useMatchInfo'
+import { MostChampionInfoProvider } from './hooks/useMostChampionInfo'
+import { SummonerInfoProvider } from './hooks/useSummonerInfo'
 import Header from './layout/Header'
-import SampleComponent from './pages/SampleComponent'
-import SearchSummoner from './pages/SearchSummoner'
+import Home from './pages/Home'
 
 function App() {
   return (
     <Router>
-      <Header />
-      <Switch>
-        <Route path="/" exact component={SearchSummoner} />
-        <Route path="/component" component={SampleComponent} />
-      </Switch>
+      <Compose providers={[SummonerInfoProvider, MostChampionInfoProvider, MatchInfoProvider]}>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Home} />
+        </Switch>
+      </Compose>
     </Router>
   )
 }

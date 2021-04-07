@@ -1,20 +1,23 @@
 import styled from 'styled-components'
 import theme from '../../assets/styles/theme'
+import calculator from '../../lib/calculator'
+import { Champion } from '../../model/Champion'
+import { WinRate } from '../../model/WinRate'
 import ChampionProfile from '../ChampionProfile'
 import { RankRateBar } from '../RankRate'
 import { Text } from '../Typography'
 
-function ChampionRankRateCard() {
+function MostChampionWeekCard({ name, imageUrl, wins, losses }: WinRate) {
   return (
     <Wrapper>
-      <ChampionProfile title="신지드" src="" />
+      <ChampionProfile title={name} src={imageUrl} />
       <Column>
         <Text color={theme.color.disabled} fontSize={13} block bold>
-          69%
+          {calculator.winRate(wins, losses)}%
         </Text>
       </Column>
       <Column>
-        <RankRateBar win={6} loss={7} />
+        <RankRateBar win={wins} loss={losses} />
       </Column>
     </Wrapper>
   )
@@ -24,9 +27,9 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 27px 124px;
   align-items: center;
-  grid-gap: 12px;
+  grid-gap: 7px;
 
-  padding: 10px 15px;
+  padding: 10px;
 
   &:not(:last-child) {
     border-bottom: 1px solid ${({ theme }) => theme.color.grey[3]};
@@ -39,4 +42,4 @@ const Column = styled.div`
   }
 `
 
-export default ChampionRankRateCard
+export default MostChampionWeekCard

@@ -1,12 +1,9 @@
 import styled from 'styled-components'
-import { calcPercentage } from './helper'
+import calculator from '../../lib/calculator'
 import { BaseRankRateProps } from './type'
 
 function RankRateBar({ win, loss }: BaseRankRateProps) {
-  const { win: winPercent, loss: lossPercent } = calcPercentage(win, loss)
-
-  console.log('winPercent', winPercent)
-  console.log('lossPercent', lossPercent)
+  const { win: winPercent, loss: lossPercent } = calculator.winLosePercentage(win, loss)
 
   return (
     <Wrapper>
@@ -28,7 +25,7 @@ const Bar = styled.div<{ weight: number }>`
   width: ${({ weight }) => `${weight}%`};
   line-height: 24px;
   height: 100%;
-  width: 100%;
+  min-width: 32px;
 `
 
 const Win = styled(Bar)`

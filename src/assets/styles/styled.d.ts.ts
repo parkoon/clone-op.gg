@@ -22,6 +22,25 @@ declare module 'styled-components' {
         4: string
         5: string
         6: string
+        7: string
+      }
+      win: {
+        border: string
+        background: string
+        button: string
+        icon: string
+      }
+      lose: {
+        border: string
+        background: string
+        button: string
+        icon: string
+      }
+      retry: {
+        border: string
+        background: string
+        button: string
+        icon: string
       }
     }
   }

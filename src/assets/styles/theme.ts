@@ -21,6 +21,25 @@ const theme: DefaultTheme = {
       4: '#727272',
       5: '#666666',
       6: '#657070',
+      7: '#333333',
+    },
+    win: {
+      border: '#a1b8cd',
+      background: '#b0ceea',
+      button: '#7fb0e1',
+      icon: '#04609e',
+    },
+    lose: {
+      border: '#c0aba8',
+      background: '#d6b5b2',
+      button: '#e89c95',
+      icon: '#c1433e',
+    },
+    retry: {
+      border: '#a7a7a7',
+      background: '#b6b6b6',
+      button: '#a7a7a7',
+      icon: '#555555',
     },
   },
 }
