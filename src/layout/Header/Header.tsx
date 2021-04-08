@@ -1,5 +1,6 @@
+import _ from 'lodash'
 import { lighten } from 'polished'
-import { ChangeEvent, KeyboardEvent } from 'react'
+import { ChangeEvent, KeyboardEvent, useCallback } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components'
 import ChampionProfile from '../../components/ChampionProfile'
@@ -10,6 +11,9 @@ function Header() {
   const history = useHistory()
 
   const { setSummonerName, summoner, hasResult, initialLoading } = useSummonerSearch()
+
+  console.log('initialLoading', initialLoading)
+  console.log('hasResult', hasResult)
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode !== 13) return
@@ -22,9 +26,14 @@ function Header() {
     })
   }
 
+  const delayedSetSummonerName = useCallback(
+    _.debounce((q) => setSummonerName(q), 300),
+    []
+  )
+
   const handleChange = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement
-    setSummonerName(target.value)
+    delayedSetSummonerName(target.value)
   }
 
   const handleSummonerClick = (name: string) => {
