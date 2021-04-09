@@ -5,7 +5,7 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components'
 import ChampionProfile from '../../components/ChampionProfile'
 import Search from '../../components/Search'
-import { useSummonerSearch } from '../../hooks/useSummonerSearch'
+import { useSummonerSearch } from '../../hooks/fetch/useSummonerSearch'
 
 function Header() {
   const history = useHistory()

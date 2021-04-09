@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios'
 import { useState } from 'react'
 import useSWR from 'swr'
-import fetcher from '../lib/fetcher'
-import { Summoner } from '../model/Summoner'
+import fetcher from '../../lib/fetcher'
+import { Summoner } from '../../model/Summoner'
 
 export const useSummonerSearch = () => {
   const [summonerName, setSummonerName] = useState('')

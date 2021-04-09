@@ -1,9 +1,9 @@
 import { AxiosResponse } from 'axios'
 import { createContext, FC, useContext } from 'react'
 import useSWR from 'swr'
-import fetcher from '../lib/fetcher'
-import { Summoner } from '../model/Summoner'
-import useQuery from './useQuery'
+import fetcher from '../../lib/fetcher'
+import { Summoner } from '../../model/Summoner'
+import useQuery from '../useQuery'
 
 type SummonerInfoContextType = {
   summoner: Summoner

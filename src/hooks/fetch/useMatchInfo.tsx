@@ -1,12 +1,12 @@
 import { AxiosResponse } from 'axios'
 import { createContext, FC, useContext, useEffect, useMemo, useState } from 'react'
 import useSWR from 'swr'
-import useQuery from './useQuery'
-import fetcher from '../lib/fetcher'
-import { Champion } from '../model/Champion'
-import { Game } from '../model/Game'
-import { Position } from '../model/Position'
-import { Summary } from '../model/Summary'
+import useQuery from '../useQuery'
+import fetcher from '../../lib/fetcher'
+import { Champion } from '../../model/Champion'
+import { Game } from '../../model/Game'
+import { Position } from '../../model/Position'
+import { Summary } from '../../model/Summary'
 
 type GameType = 'solo' | 'all' | 'free'
 type MatchInfoType = {

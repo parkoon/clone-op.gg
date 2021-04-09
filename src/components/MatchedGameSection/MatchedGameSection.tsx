@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useMatchInfo } from '../../hooks/useMatchInfo'
+import { useMatchInfo } from '../../hooks/fetch/useMatchInfo'
 import { ResultItem, ResultNavigation } from '../ResultNavigation'
 import { GameResultField, MostChampionField, PositionField, SummaryField } from './Field'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSummonerInfo } from '../../hooks/useSummonerInfo'
+import { useSummonerInfo } from '../../hooks/fetch/useSummonerInfo'
 import LeagueCard from './LeagueCard'
 // import UnLeagueCard from '../LeagueCard/UnLeagueCard'
 

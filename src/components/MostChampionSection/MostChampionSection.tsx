@@ -1,4 +1,4 @@
-import { useMostChampionInfo } from '../../hooks/useMostChampionInfo'
+import { useMostChampionInfo } from '../../hooks/fetch/useMostChampionInfo'
 import { Tab, Tabs } from '../Tabs'
 import MostChampionCard from './MostChampionCard'
 import MostChampionWeekCard from './MostChampionWeekCard'

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import useFetchMatchDetail from '../../hooks/useMatchDetail'
+import useFetchMatchDetail from '../../hooks/fetch/useMatchDetail'
 import formatter from '../../lib/formatter'
 import Image from '../Image'
 import { Text } from '../Typography'

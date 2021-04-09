@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useSummonerInfo } from '../../hooks/useSummonerInfo'
+import { useSummonerInfo } from '../../hooks/fetch/useSummonerInfo'
 import TierBadge from '../TierBadge'
 import { Text } from '../Typography'
 import SummonerProfileIcon from './SummonerProfileIcon'

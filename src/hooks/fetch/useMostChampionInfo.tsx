@@ -1,10 +1,10 @@
 import { AxiosResponse } from 'axios'
 import { createContext, FC, useContext } from 'react'
 import useSWR from 'swr'
-import useQuery from './useQuery'
-import fetcher from '../lib/fetcher'
-import { Champion } from '../model/Champion'
-import { WinRate } from '../model/WinRate'
+import useQuery from '../useQuery'
+import fetcher from '../../lib/fetcher'
+import { Champion } from '../../model/Champion'
+import { WinRate } from '../../model/WinRate'
 
 type MostChampionInfoContextType = {
   mostChampions: Champion[]
