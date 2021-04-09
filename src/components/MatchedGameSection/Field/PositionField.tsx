@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useMemo } from 'react'
 import theme from '../../../assets/styles/theme'
 import calculator from '../../../lib/calculator'
 import { Position } from '../../../model/Position'
@@ -10,11 +10,11 @@ import { Text } from '../../Typography'
 
 type Props = {
   positions: Position[]
-  totalGameCount: number
 }
-
-function PositionField({ positions, totalGameCount }: Props) {
-  console.log('positions', positions, totalGameCount)
+function PositionField({ positions }: Props) {
+  const totalGameCount = useMemo(() => positions.reduce((prev, curr) => (prev += curr.games), 0), [
+    positions,
+  ])
   return (
     <>
       <Text fontSize={12} color={theme.color.grey[6]}>

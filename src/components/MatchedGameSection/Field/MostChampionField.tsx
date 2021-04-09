@@ -1,43 +1,53 @@
 import styled from 'styled-components'
 import theme from '../../../assets/styles/theme'
 import calculator from '../../../lib/calculator'
-import { Champion } from '../../../model/Champion'
 import ChampionProfile from '../../ChampionProfile'
 import { VerticalDivider } from '../../Divider'
 import { DefaultChampion } from '../../Icons'
 import { Text } from '../../Typography'
+import { ReduceChampion } from '../helper'
 
 type Props = {
-  champions: Champion[]
+  champion: ReduceChampion
 }
 
 const MAX_CHAMPION = 3
-function MostChampionField({ champions }: Props) {
+function MostChampionField({ champion }: Props) {
+  const mostChampions = Object.keys(champion)
+    .sort((a, b) => champion[b].pickCount - champion[a].pickCount)
+    .slice(0, 3)
+
   return (
     <>
-      {champions.map(({ name, imageUrl, wins, losses, kills, assists, deaths }, index) => (
-        <ChampionProfile
-          key={index}
-          title={name}
-          subtitle={
-            <>
-              <Text fontSize={11} color="red" bold>
-                70%
-              </Text>
-              <Text fontSize={11}>
-                ({wins}승 {losses}패)
-              </Text>
-              <VerticalDivider size={10} gutter={7} />
-              <Text fontSize={11} color="orange" bold>
-                {calculator.average(kills, assists, deaths)}평점
-              </Text>
-            </>
-          }
-          src={imageUrl}
-          size="sm"
-        />
-      ))}
-      {Array.from({ length: MAX_CHAMPION - champions.length }).map((_, index) => (
+      {mostChampions.map((championName, index) => {
+        const { win, pickCount, kill, assist, death, imageUrl } = champion[championName]
+
+        const loss = Math.abs(pickCount - win)
+
+        return (
+          <ChampionProfile
+            key={index}
+            title={championName}
+            subtitle={
+              <>
+                <Text fontSize={11} color="red" bold>
+                  {calculator.winRate(win, loss)}%
+                </Text>
+                <Text fontSize={11}>
+                  ({win}승 {loss}패)
+                </Text>
+                <VerticalDivider size={10} gutter={7} />
+                <Text fontSize={11} color="orange" bold>
+                  {calculator.kda(kill, assist, death)}평점
+                </Text>
+              </>
+            }
+            src={imageUrl}
+            size="sm"
+          />
+        )
+      })}
+      {Array.from({ length: MAX_CHAMPION - mostChampions.length }).map((_, index) => (
         <EmptyChampion key={index} />
       ))}
     </>

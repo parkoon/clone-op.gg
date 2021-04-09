@@ -1,18 +1,20 @@
 import styled from 'styled-components'
 import theme from '../../../assets/styles/theme'
-import { Summary } from '../../../model/Summary'
+import calculator from '../../../lib/calculator'
 import CircularRateBar from '../../CircularRateBar'
 import KDAPoint from '../../KDAPoint'
 import { Text } from '../../Typography'
+import { ReduceSummary } from '../helper'
 
-function SummaryField({ kills, assists, losses, wins }: Summary) {
+function SummaryField({ totalGame, win, kill, assist, death }: ReduceSummary) {
   return (
     <>
-      <CircularRateBar win={wins} loss={losses} />
+      <CircularRateBar win={win} loss={totalGame - win} />
       <Column>
-        <KDAPoint kill={kills} assist={assists} death={losses} size="sm" />
+        <KDAPoint kill={kill} assist={assist} death={death} size="sm" />
         <Text fontSize={16} style={{ marginTop: 7 }}>
-          <Text color={theme.color.green}>3.45:1</Text> <Text color={theme.color.red}>(58%)</Text>
+          <Text color={theme.color.green}>{calculator.kda(kill, assist, death)}:1</Text>{' '}
+          <Text color={theme.color.red}>({calculator.killShare(kill, assist, death)}%)</Text>
         </Text>
       </Column>
     </>

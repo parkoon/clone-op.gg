@@ -1,5 +1,3 @@
-import { Position } from '../model/Position'
-
 const calculator = {
   winRate(win: number, loss: number) {
     return loss === 0 ? 100 : Math.floor((win / (win + loss)) * 100)
@@ -16,11 +14,15 @@ const calculator = {
       loss: win > loss ? Math.floor(lossPercent) : Math.ceil(lossPercent),
     }
   },
-  average(kill: number, assist: number, death: number) {
+  kda(kill: number, assist: number, death: number) {
+    if (kill + assist === 0) return 0
     return ((kill + assist) / death).toFixed(2)
   },
   positionRate(positionCount: number, totalGameCount: number) {
     return Math.floor((positionCount / totalGameCount) * 100)
+  },
+  killShare(kill: number, assist: number, death: number) {
+    return Math.floor((kill / (kill + assist + death)) * 100)
   },
 }
 

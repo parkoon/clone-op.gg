@@ -1,13 +1,17 @@
+import { useMemo } from 'react'
 import styled from 'styled-components'
 import { useMatchInfo } from '../../hooks/fetch/useMatchInfo'
 import { MatchedGameSectionLoading } from '../Loading'
 import { ResultItem, ResultNavigation } from '../ResultNavigation'
 import { GameResultField, MostChampionField, PositionField, SummaryField } from './Field'
+import { reduceGames } from './helper'
 
 function MatchedGameSection() {
-  const { mostChampions, summary, games, positions, setGameType, initialLoading } = useMatchInfo()
+  const { games, positions, setGameType, initialLoading } = useMatchInfo()
 
-  console.log('summary', games)
+  const { summary, champion } = useMemo(() => reduceGames(games), [games])
+
+  console.log('###', champion)
 
   return (
     <>
@@ -27,11 +31,11 @@ function MatchedGameSection() {
             </Column>
 
             <ChampionColum>
-              <MostChampionField champions={mostChampions} />
+              <MostChampionField champion={champion} />
             </ChampionColum>
 
             <RankColumn>
-              <PositionField positions={positions} totalGameCount={games.length} />
+              <PositionField positions={positions} />
             </RankColumn>
           </Wrapper>
 
