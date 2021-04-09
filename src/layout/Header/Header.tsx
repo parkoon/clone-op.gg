@@ -37,7 +37,7 @@ function Header() {
 
     reset()
     history.push({
-      pathname: '/',
+      pathname: '/search',
       search: `?username=${target.value}`,
     })
   }
@@ -51,7 +51,7 @@ function Header() {
   const handleSummonerClick = (name: string) => {
     reset()
     history.push({
-      pathname: '/',
+      pathname: '/search',
       search: `?username=${name}`,
     })
   }
