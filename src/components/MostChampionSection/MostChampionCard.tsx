@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import theme from '../../assets/styles/theme'
 import calculator from '../../lib/calculator'
+import colorGenerator from '../../lib/colorGenerator'
 import formatter from '../../lib/formatter'
 import { Champion } from '../../model/Champion'
 import ChampionProfile from '../ChampionProfile'
@@ -19,6 +20,8 @@ function MostChampionCard({
   rank,
   wins,
 }: Champion) {
+  const kda = calculator.kda(kills, assists, deaths)
+  const winRate = calculator.winRate(wins, losses)
   return (
     <Wrapper>
       <ChampionProfile
@@ -27,16 +30,16 @@ function MostChampionCard({
         src={imageUrl}
       />
       <Column>
-        <Text color={theme.color.grey[6]} fontSize={13} block bold>
-          2.47:1 평점
+        <Text color={colorGenerator.kda(Number(kda))} fontSize={13} block bold>
+          {kda} 평점
         </Text>
         <Text fontSize={11} color={theme.color.disabled}>
           {kills} / {deaths} / {assists}
         </Text>
       </Column>
       <Column>
-        <Text color={theme.color.grey[6]} fontSize={13} block bold>
-          {calculator.winRate(wins, losses)}%
+        <Text color={colorGenerator.winRate(winRate)} fontSize={13} block bold>
+          {winRate}%
         </Text>
         <Text fontSize={11} color={theme.color.grey[4]}>
           {wins + losses}게임

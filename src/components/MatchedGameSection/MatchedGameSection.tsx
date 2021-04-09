@@ -11,8 +11,6 @@ function MatchedGameSection() {
 
   const { summary, champion } = useMemo(() => reduceGames(games), [games])
 
-  console.log('###', champion)
-
   return (
     <>
       <ResultNavigation defaultActiveId="all" onChange={setGameType}>

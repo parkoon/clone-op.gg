@@ -33,19 +33,16 @@ function SearchSummoner() {
       <Container>
         <SummonerProfile />
       </Container>
-
       <HorizontalDivider />
-
       <Container>
         <Content>
-          <article>
+          <div>
             <LeagueSection />
-
             <MostChampionSection />
-          </article>
-          <article>
+          </div>
+          <div>
             <MatchedGameSection />
-          </article>
+          </div>
         </Content>
       </Container>
     </>

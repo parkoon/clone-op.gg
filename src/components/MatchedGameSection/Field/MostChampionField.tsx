@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import theme from '../../../assets/styles/theme'
 import calculator from '../../../lib/calculator'
+import colorGenerator from '../../../lib/colorGenerator'
 import ChampionProfile from '../../ChampionProfile'
 import { VerticalDivider } from '../../Divider'
 import { DefaultChampion } from '../../Icons'
@@ -23,6 +24,8 @@ function MostChampionField({ champion }: Props) {
         const { win, pickCount, kill, assist, death, imageUrl } = champion[championName]
 
         const loss = Math.abs(pickCount - win)
+        const winRate = calculator.winRate(win, loss)
+        const kda = calculator.kda(kill, assist, death)
 
         return (
           <ChampionProfile
@@ -30,15 +33,15 @@ function MostChampionField({ champion }: Props) {
             title={championName}
             subtitle={
               <>
-                <Text fontSize={11} color="red" bold>
-                  {calculator.winRate(win, loss)}%
+                <Text fontSize={11} color={colorGenerator.winRate(winRate)} bold>
+                  {winRate}%
                 </Text>
                 <Text fontSize={11}>
                   ({win}승 {loss}패)
                 </Text>
                 <VerticalDivider size={10} gutter={7} />
-                <Text fontSize={11} color="orange" bold>
-                  {calculator.kda(kill, assist, death)}평점
+                <Text fontSize={11} color={colorGenerator.kda(Number(kda))} bold>
+                  {kda}평점
                 </Text>
               </>
             }
