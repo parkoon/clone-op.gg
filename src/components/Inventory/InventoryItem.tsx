@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Image from '../Image'
+import Tooltip from '../Tooltip'
 type Props = {
   /**
    * Item Image URL
@@ -9,7 +10,11 @@ type Props = {
 }
 function InventoryItem({ src }: Props) {
   if (!src) return <Empty />
-  return <Image src={src} width="22" height="22" shape="square" />
+  return (
+    <Tooltip content="아이템 툴팁입니다.">
+      <Image src={src} width="22" height="22" shape="square" />
+    </Tooltip>
+  )
 }
 
 const Empty = styled.div`

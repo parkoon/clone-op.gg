@@ -11,6 +11,7 @@ import Image from '../Image'
 import { Inventory, InventoryItem } from '../Inventory'
 import KDAPoint from '../KDAPoint'
 import OpScoreBadge from '../OpScoreBadge'
+import Tooltip from '../Tooltip'
 import { Text } from '../Typography'
 import WardIcon from '../WardIcon'
 import DetailGameItem from './DetailGameItem'
@@ -31,6 +32,7 @@ function GameItemCard({
   gameId,
   needRenew,
   isWin,
+  ...props
 }: Game) {
   const itemWithBlank = useMemo(
     () =>
