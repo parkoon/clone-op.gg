@@ -24,8 +24,7 @@
     ├── .package.json           # package 관련 파일
     ├── .prettier               # prettier 설정 파일
     ├── README.md               # README
-    ├── tsconfig.json           # ts 환경 설정 파일
-    └── ...
+    └──  tsconfig.json           # ts 환경 설정 파일
 
 ## 사용된 기술 스펙
 
