@@ -25,7 +25,7 @@ export const MostChampionInfoProvider: FC = ({ children }) => {
 
   const initialLoading = !data && !error
 
-  const mostChampions = data?.data.champions || ([] as Champion[])
+  const mostChampions = data?.data.champions.sort((a, b) => b.games - a.games) || ([] as Champion[])
   const recentWinRate = data?.data.recentWinRate || ([] as WinRate[])
 
   return (
