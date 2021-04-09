@@ -97,7 +97,9 @@ function Header() {
           </SummonerList>
         )}
 
-        {!summonerName && searchHistoryVisibility && <SearchHistory ref={historyRef} />}
+        {!summonerName && searchHistoryVisibility && (
+          <SearchHistory ref={historyRef} onHistoryClick={handleSummonerClick} />
+        )}
       </SearchWrapper>
     </Wrapper>
   )

@@ -1,3 +1,4 @@
+import { lighten } from 'polished'
 import { forwardRef } from 'react'
 import { AiFillStar, AiOutlineClose } from 'react-icons/ai'
 import styled from 'styled-components'
@@ -6,13 +7,20 @@ import useSummonerHistoryStorage from '../../hooks/storage/useSummonerHistorySto
 import { Tab, Tabs } from '../Tabs'
 import EmptyHistory from './EmptyFavoriteHistory'
 
-const SearchHistory = forwardRef<HTMLUListElement>((props, ref) => {
+type Props = {
+  onHistoryClick(name: string): void
+}
+const SearchHistory = forwardRef<HTMLUListElement, Props>(({ onHistoryClick }, ref) => {
   const {
     histories,
     favoriteHistories,
     toggleFavorite,
     removeHistory,
   } = useSummonerHistoryStorage()
+
+  const handleItemClick = (name: string) => {
+    onHistoryClick(name)
+  }
 
   return (
     <Wrapper ref={ref}>
@@ -21,7 +29,7 @@ const SearchHistory = forwardRef<HTMLUListElement>((props, ref) => {
           <ul>
             {histories.length > 0 ? (
               histories.map(({ name, favorite }) => (
-                <Item key={name}>
+                <Item key={name} onClick={() => handleItemClick(name)}>
                   {name}
                   <div>
                     <AiFillStar
@@ -51,7 +59,7 @@ const SearchHistory = forwardRef<HTMLUListElement>((props, ref) => {
           <ul>
             {favoriteHistories.length > 0 ? (
               favoriteHistories.map(({ name }) => (
-                <Item key={name}>
+                <Item key={name} onClick={() => handleItemClick(name)}>
                   {name}
                   <div>
                     <AiOutlineClose
@@ -97,9 +105,12 @@ const Item = styled.li`
   padding: 15px;
   font-size: 13px;
 
-  &:not(:last-child) {
-    padding-bottom: 7px;
+  &:hover {
+    background: ${({ theme }) => lighten(0.3, theme.color.blue)};
   }
+
+  transition: 0.15s;
+  cursor: pointer;
 `
 
 export default SearchHistory
