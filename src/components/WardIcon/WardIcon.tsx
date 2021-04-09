@@ -1,6 +1,6 @@
 import styled, { CSSProperties } from 'styled-components'
 import { Text } from '../Typography'
-import * as Icons from './Icons'
+import * as Icons from '../Icons'
 
 type Props = {
   type: keyof typeof Icons

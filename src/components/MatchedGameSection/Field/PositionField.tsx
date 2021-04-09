@@ -1,20 +1,38 @@
+import { ReactNode } from 'react'
 import theme from '../../../assets/styles/theme'
 import calculator from '../../../lib/calculator'
 import { Position } from '../../../model/Position'
 import ChampionProfile from '../../ChampionProfile'
 import { VerticalDivider } from '../../Divider'
+import { ADCPosition, JunglePosition, MidPosition, SupportPosition } from '../../Icons'
+import TopPosition from '../../Icons/TopPosition'
 import { Text } from '../../Typography'
 
 type Props = {
   positions: Position[]
 }
 
-const positionMap: Record<string, string> = {
-  ADC: '원딜',
-  TOP: '탑',
-  MID: '미드',
-  SUP: '서포트',
-  JNG: '정글',
+const positionMap: Record<string, { title: string; icon: ReactNode }> = {
+  ADC: {
+    title: '원딜',
+    icon: <ADCPosition />,
+  },
+  TOP: {
+    title: '탑',
+    icon: <TopPosition />,
+  },
+  MID: {
+    title: '미드',
+    icon: <MidPosition />,
+  },
+  SUP: {
+    title: '서포트',
+    icon: <SupportPosition />,
+  },
+  JNG: {
+    title: '정글',
+    icon: <JunglePosition />,
+  },
 }
 function PositionField({ positions }: Props) {
   return (
@@ -26,7 +44,7 @@ function PositionField({ positions }: Props) {
       {positions.map(({ position, wins, losses }, index) => (
         <ChampionProfile
           key={index}
-          title={positionMap[position]}
+          title={positionMap[position].title}
           subtitle={
             <>
               <Text fontSize={11} color="red" bold>
@@ -41,7 +59,7 @@ function PositionField({ positions }: Props) {
               </Text>
             </>
           }
-          src=""
+          icon={positionMap[position].icon}
           size="sm"
         />
       ))}
