@@ -1,3 +1,5 @@
+import { Position } from '../model/Position'
+
 const calculator = {
   winRate(win: number, loss: number) {
     return loss === 0 ? 100 : Math.floor((win / (win + loss)) * 100)
@@ -16,6 +18,9 @@ const calculator = {
   },
   average(kill: number, assist: number, death: number) {
     return ((kill + assist) / death).toFixed(2)
+  },
+  positionRate(positionCount: number, totalGameCount: number) {
+    return Math.floor((positionCount / totalGameCount) * 100)
   },
 }
 

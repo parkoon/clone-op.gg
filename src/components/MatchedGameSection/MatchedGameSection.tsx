@@ -7,6 +7,8 @@ import { GameResultField, MostChampionField, PositionField, SummaryField } from 
 function MatchedGameSection() {
   const { mostChampions, summary, games, positions, setGameType, initialLoading } = useMatchInfo()
 
+  console.log('summary', games)
+
   return (
     <>
       <ResultNavigation defaultActiveId="all" onChange={setGameType}>
@@ -29,7 +31,7 @@ function MatchedGameSection() {
             </ChampionColum>
 
             <RankColumn>
-              <PositionField positions={positions} />
+              <PositionField positions={positions} totalGameCount={games.length} />
             </RankColumn>
           </Wrapper>
 
