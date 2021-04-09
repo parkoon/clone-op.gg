@@ -16,7 +16,7 @@ const SearchHistory = forwardRef<HTMLUListElement>((props, ref) => {
 
   return (
     <Wrapper ref={ref}>
-      <Tabs defaultActiveId="champion">
+      <Tabs defaultActiveId="champion" reverseColor>
         <Tab label="최근검색" id="champion">
           <ul>
             {histories.length > 0 ? (
@@ -34,7 +34,10 @@ const SearchHistory = forwardRef<HTMLUListElement>((props, ref) => {
                     />
                     <AiOutlineClose
                       style={{ cursor: 'pointer' }}
-                      onClick={() => removeHistory(name)}
+                      onClick={(e) => {
+                        removeHistory(name)
+                        e.stopPropagation()
+                      }}
                     />
                   </div>
                 </Item>
@@ -53,7 +56,10 @@ const SearchHistory = forwardRef<HTMLUListElement>((props, ref) => {
                   <div>
                     <AiOutlineClose
                       style={{ cursor: 'pointer' }}
-                      onClick={() => toggleFavorite(name)}
+                      onClick={(e) => {
+                        toggleFavorite(name)
+                        e.stopPropagation()
+                      }}
                     />
                   </div>
                 </Item>
