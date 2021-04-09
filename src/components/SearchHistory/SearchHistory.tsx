@@ -1,4 +1,3 @@
-import { lighten } from 'polished'
 import { forwardRef } from 'react'
 import { AiFillStar, AiOutlineClose } from 'react-icons/ai'
 import styled from 'styled-components'

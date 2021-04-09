@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import theme from '../../assets/styles/theme'
 import calculator from '../../lib/calculator'
 import colorGenerator from '../../lib/colorGenerator'
 import formatter from '../../lib/formatter'
