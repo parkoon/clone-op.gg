@@ -49,11 +49,11 @@ function Header() {
   }
 
   const handleSummonerClick = (name: string) => {
-    reset()
     history.push({
       pathname: '/search',
       search: `?username=${name}`,
     })
+    reset()
   }
 
   const reset = () => {
@@ -78,7 +78,7 @@ function Header() {
             setFocused(true)
             setSearchHistoryVisibility(true)
           }}
-          onBlur={() => setFocused(false)}
+          onBlur={() => setTimeout(() => setFocused(false), 300)}
         />
 
         {!initialLoading && hasResult && focused && (
