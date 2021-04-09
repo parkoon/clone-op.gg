@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useSummonerInfo } from '../../hooks/fetch/useSummonerInfo'
+import { SummonerProfileLoading } from '../Loading'
 import TierBadge from '../TierBadge'
 import { Text } from '../Typography'
 import SummonerProfileIcon from './SummonerProfileIcon'
@@ -7,7 +8,7 @@ import SummonerProfileIcon from './SummonerProfileIcon'
 function SummonerProfile() {
   const { summoner, initialLoading } = useSummonerInfo()
 
-  if (initialLoading) return <span>로딩중</span>
+  if (initialLoading) return <SummonerProfileLoading />
 
   const {
     ladderRank: { rank, rankPercentOfTop },

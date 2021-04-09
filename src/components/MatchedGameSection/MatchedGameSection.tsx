@@ -1,37 +1,44 @@
 import styled from 'styled-components'
 import { useMatchInfo } from '../../hooks/fetch/useMatchInfo'
+import { MatchedGameSectionLoading } from '../Loading'
 import { ResultItem, ResultNavigation } from '../ResultNavigation'
 import { GameResultField, MostChampionField, PositionField, SummaryField } from './Field'
 
 function MatchedGameSection() {
-  const { mostChampions, summary, games, positions, setGameType } = useMatchInfo()
+  const { mostChampions, summary, games, positions, setGameType, initialLoading } = useMatchInfo()
 
   return (
-    <div>
+    <>
       <ResultNavigation defaultActiveId="all" onChange={setGameType}>
         <ResultItem label="전체" id="all" />
         <ResultItem label="솔로게임" id="solo" />
         <ResultItem label="자유랭크" id="free" />
       </ResultNavigation>
 
-      <Wrapper>
-        <Column>
-          <SummaryField {...summary} />
-        </Column>
+      {initialLoading ? (
+        <MatchedGameSectionLoading />
+      ) : (
+        <>
+          <Wrapper>
+            <Column>
+              <SummaryField {...summary} />
+            </Column>
 
-        <ChampionColum>
-          <MostChampionField champions={mostChampions} />
-        </ChampionColum>
+            <ChampionColum>
+              <MostChampionField champions={mostChampions} />
+            </ChampionColum>
 
-        <RankColumn>
-          <PositionField positions={positions} />
-        </RankColumn>
-      </Wrapper>
+            <RankColumn>
+              <PositionField positions={positions} />
+            </RankColumn>
+          </Wrapper>
 
-      <GameItemWrapper>
-        <GameResultField games={games} />
-      </GameItemWrapper>
-    </div>
+          <GameItemWrapper>
+            <GameResultField games={games} />
+          </GameItemWrapper>
+        </>
+      )}
+    </>
   )
 }
 

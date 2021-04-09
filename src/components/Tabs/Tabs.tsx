@@ -13,9 +13,11 @@ type Props = {
    * Tab Change Event
    */
   onChange?(key: string): void
+
+  reverseColor?: boolean
 }
 
-const Tabs: FC<Props> = ({ defaultActiveId, children }) => {
+const Tabs: FC<Props> = ({ defaultActiveId, reverseColor, children }) => {
   const [activeTabId, setActiveTabId] = useState(defaultActiveId)
 
   const handleMenuClick = (id: string) => {
@@ -32,13 +34,14 @@ const Tabs: FC<Props> = ({ defaultActiveId, children }) => {
               key={index}
               onClick={() => handleMenuClick(child.props.id)}
               active={child.props.id === activeTabId}
+              reverseColor={reverseColor}
             >
               {child.props.label}
             </TabMenu>
           )
         })}
       </Header>
-      <Body>
+      <Body reverseColor={reverseColor}>
         {Children.map(children, (child, index) => {
           if (!isValidElement(child) || child.props.id !== activeTabId) return
           return <div key={index}>{child}</div>
@@ -58,7 +61,7 @@ const Header = styled.header<{ length: number }>`
   text-align: center;
 `
 
-const TabMenu = styled.div<{ active: boolean }>`
+const TabMenu = styled.div<{ active: boolean; reverseColor?: boolean }>`
   font-size: 12px;
   padding: 15px 35px;
   cursor: pointer;
@@ -68,20 +71,23 @@ const TabMenu = styled.div<{ active: boolean }>`
     border-right: 1px solid ${({ theme }) => theme.color.grey[3]};
   }
 
-  ${({ active }) =>
+  ${({ active, reverseColor }) =>
     active
       ? css`
           font-weight: bold;
           color: ${({ theme }) => theme.color.disabled};
-          background: ${({ theme }) => theme.color.grey[1]};
+          background: ${({ theme }) => (reverseColor ? theme.color.white : theme.color.grey[1])};
         `
       : css`
           color: ${({ theme }) => theme.color.disabled};
           border-bottom: 1px solid ${({ theme }) => theme.color.grey[3]};
+
+          background: ${({ theme }) => (reverseColor ? theme.color.grey[1] : theme.color.white)};
         `}
 `
 
-const Body = styled.section`
-  background: ${({ theme }) => theme.color.grey[1]};
+const Body = styled.section<{ reverseColor?: boolean }>`
+  background: ${({ theme, reverseColor }) =>
+    reverseColor ? theme.color.white : theme.color.grey[1]};
 `
 export default Tabs
