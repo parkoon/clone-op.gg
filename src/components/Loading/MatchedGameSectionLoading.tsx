@@ -7,15 +7,15 @@ function MatchedGameSectionLoading() {
       <Wrapper>
         <Row>
           <div style={{ textAlign: 'center' }}>
-            <ShimmerEffect rounded width={90} height={90} />
+            <ShimmerEffect rounded width={100} height={100} />
           </div>
           <div style={{ alignSelf: 'center' }}>
-            <ShimmerEffect count={3} />
+            <ShimmerEffect count={4} />
           </div>
         </Row>
       </Wrapper>
       <div>
-        <ShimmerEffect height={96} count={4} />
+        <ShimmerEffect height={132} count={4} />
       </div>
     </div>
   )
@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 
 const Row = styled.div`
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 100px 1fr;
   grid-gap: 17px;
 
   &:not(:last-child) {
