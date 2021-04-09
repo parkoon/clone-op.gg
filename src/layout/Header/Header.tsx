@@ -1,47 +1,68 @@
-import _ from 'lodash'
 import { lighten } from 'polished'
-import { ChangeEvent, KeyboardEvent, useCallback } from 'react'
+import { ChangeEvent, KeyboardEvent, useRef, useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components'
 import ChampionProfile from '../../components/ChampionProfile'
 import Search from '../../components/Search'
+import SearchHistory from '../../components/SearchHistory'
 import { useSummonerSearch } from '../../hooks/fetch/useSummonerSearch'
+import useInteractOutside from '../../hooks/useInteractOutside'
 
 function Header() {
   const history = useHistory()
 
-  const { setSummonerName, summoner, hasResult, initialLoading } = useSummonerSearch()
+  const [summonerName, setSummonerName] = useState('')
+  const [searchHistoryVisibility, setSearchHistoryVisibility] = useState(false)
 
-  console.log('initialLoading', initialLoading)
-  console.log('hasResult', hasResult)
+  const { summoner, hasResult, initialLoading, delayedQuery, resetQuery } = useSummonerSearch()
+
+  const [focused, setFocused] = useState(false)
+  const searchRef = useRef<HTMLInputElement>(null)
+  const historyRef = useRef<HTMLUListElement>(null)
+
+  useInteractOutside({
+    ref: historyRef,
+    excludedRefs: [searchRef],
+    onInteractOutside() {
+      setSearchHistoryVisibility(false)
+    },
+  })
+
+  console.log('historyRef', historyRef)
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode !== 13) return
 
     const target = e.target as HTMLInputElement
 
+    if (!target.value) return alert('소환사 이름을 입력해주세요.')
+
+    reset()
     history.push({
       pathname: '/',
       search: `?username=${target.value}`,
     })
   }
 
-  const delayedSetSummonerName = useCallback(
-    _.debounce((q) => setSummonerName(q), 300),
-    []
-  )
-
   const handleChange = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement
-    delayedSetSummonerName(target.value)
+    setSummonerName(target.value)
+    delayedQuery(target.value)
   }
 
   const handleSummonerClick = (name: string) => {
-    setSummonerName('')
+    reset()
     history.push({
       pathname: '/',
       search: `?username=${name}`,
     })
+  }
+
+  const reset = () => {
+    setSummonerName('')
+    resetQuery()
+    setSearchHistoryVisibility(false)
+    searchRef.current?.blur()
   }
 
   return (
@@ -50,11 +71,18 @@ function Header() {
 
       <SearchWrapper>
         <Search
+          ref={searchRef}
+          value={summonerName}
           placeholder="소환사명, 챔피언..."
           onKeyDown={handleKeyDown}
           onChange={handleChange}
+          onFocus={() => {
+            setFocused(true)
+            setSearchHistoryVisibility(true)
+          }}
+          onBlur={() => setFocused(false)}
         />
-        {!initialLoading && hasResult && (
+        {!initialLoading && hasResult && focused && (
           <SummonerList>
             <SummonerItem onClick={() => handleSummonerClick(summoner.name)}>
               <ChampionProfile
@@ -69,6 +97,8 @@ function Header() {
             </SummonerItem>
           </SummonerList>
         )}
+
+        {!hasResult && searchHistoryVisibility && <SearchHistory ref={historyRef} />}
       </SearchWrapper>
     </Wrapper>
   )

@@ -1,12 +1,28 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { HorizontalDivider } from '../components/Divider'
 import LeagueSection from '../components/LeagueSection'
 import MatchedGameSection from '../components/MatchedGameSection'
 import MostChampionSection from '../components/MostChampionSection'
 import SummonerProfile from '../components/SummonerProfile'
+import { useSummonerInfo } from '../hooks/fetch/useSummonerInfo'
+import useSummonerHistoryStorage from '../hooks/storage/useSummonerHistoryStorage'
 import Container from '../layout/Container'
 
 function SearchSummoner() {
+  const { summoner } = useSummonerInfo()
+  const { addHistory } = useSummonerHistoryStorage()
+
+  useEffect(() => {
+    if (summoner && summoner.name) {
+      addHistory({
+        favorite: -1,
+        name: summoner.name,
+        previousTiers: summoner.previousTiers,
+        profileImageUrl: summoner.profileImageUrl,
+      })
+    }
+  }, [summoner, addHistory])
   return (
     <>
       <Container>

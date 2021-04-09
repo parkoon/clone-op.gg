@@ -1,14 +1,12 @@
-import { InputHTMLAttributes } from 'react'
+import { forwardRef, InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 
-function Search(props: InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <Wrapper>
-      <Input {...props} />
-      <Suffix>.GG</Suffix>
-    </Wrapper>
-  )
-}
+const Search = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>((props, ref) => (
+  <Wrapper>
+    <Input {...props} ref={ref} />
+    <Suffix>.GG</Suffix>
+  </Wrapper>
+))
 
 const Wrapper = styled.div`
   position: relative;

@@ -31,7 +31,7 @@ export type League = {
 }
 
 type LadderRank = { rank: number; rankPercentOfTop: number }
-type PreviousTier = {
+export type PreviousTier = {
   division: string
   imageUrl: string
   lp: number
