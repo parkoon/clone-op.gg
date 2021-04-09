@@ -29,25 +29,24 @@ const SearchHistory = forwardRef<HTMLUListElement, Props>(({ onHistoryClick }, r
           <ul>
             {histories.length > 0 ? (
               histories.map(({ name, favorite }) => (
-                <Item key={name} onClick={() => handleItemClick(name)}>
-                  {name}
-                  <div>
-                    <AiFillStar
-                      style={{
-                        color: favorite < 0 ? theme.color.grey[4] : theme.color.blue,
-                        marginRight: 7,
-                        cursor: 'pointer',
-                      }}
-                      onClick={() => toggleFavorite(name)}
-                    />
-                    <AiOutlineClose
-                      style={{ cursor: 'pointer' }}
-                      onClick={(e) => {
-                        removeHistory(name)
-                        e.stopPropagation()
-                      }}
-                    />
-                  </div>
+                <Item key={name}>
+                  <ItemTitle onClick={() => handleItemClick(name)}>{name}</ItemTitle>
+
+                  <AiFillStar
+                    style={{
+                      color: favorite < 0 ? theme.color.grey[4] : theme.color.blue,
+                      marginRight: 7,
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => toggleFavorite(name)}
+                  />
+                  <AiOutlineClose
+                    style={{ cursor: 'pointer' }}
+                    onClick={(e) => {
+                      removeHistory(name)
+                      e.stopPropagation()
+                    }}
+                  />
                 </Item>
               ))
             ) : (
@@ -59,17 +58,16 @@ const SearchHistory = forwardRef<HTMLUListElement, Props>(({ onHistoryClick }, r
           <ul>
             {favoriteHistories.length > 0 ? (
               favoriteHistories.map(({ name }) => (
-                <Item key={name} onClick={() => handleItemClick(name)}>
-                  {name}
-                  <div>
-                    <AiOutlineClose
-                      style={{ cursor: 'pointer' }}
-                      onClick={(e) => {
-                        toggleFavorite(name)
-                        e.stopPropagation()
-                      }}
-                    />
-                  </div>
+                <Item key={name}>
+                  <ItemTitle onClick={() => handleItemClick(name)}>{name}</ItemTitle>
+
+                  <AiOutlineClose
+                    style={{ cursor: 'pointer' }}
+                    onClick={(e) => {
+                      toggleFavorite(name)
+                      e.stopPropagation()
+                    }}
+                  />
                 </Item>
               ))
             ) : (
@@ -102,14 +100,18 @@ const Wrapper = styled.ul`
 const Item = styled.li`
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  align-items: center;
   font-size: 13px;
+  padding-right: 15px;
+`
 
+const ItemTitle = styled.span`
   &:hover {
-    background: ${({ theme }) => lighten(0.3, theme.color.blue)};
+    font-weight: bold;
   }
-
-  transition: 0.15s;
+  padding: 15px;
+  transition: 0.2s;
+  flex: 1;
   cursor: pointer;
 `
 
