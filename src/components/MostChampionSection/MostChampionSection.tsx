@@ -19,13 +19,9 @@ function MostChampionSection() {
         )}
       </Tab>
       <Tab label="7일간 랭크 승률" id="rate">
-        {initialLoading ? (
-          <MostChampionSectionLoading />
-        ) : (
-          recentWinRate.map((winRate, index) => (
-            <MostChampionWeekCard {...winRate} key={`wr-${index}`} />
-          ))
-        )}
+        {recentWinRate.map((winRate, index) => (
+          <MostChampionWeekCard {...winRate} key={`wr-${index}`} />
+        ))}
       </Tab>
     </Tabs>
   )
