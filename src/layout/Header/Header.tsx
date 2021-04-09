@@ -28,8 +28,6 @@ function Header() {
     },
   })
 
-  console.log('historyRef', historyRef)
-
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode !== 13) return
 
