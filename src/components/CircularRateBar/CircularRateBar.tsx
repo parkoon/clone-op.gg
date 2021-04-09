@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import styled from 'styled-components'
+import calculator from '../../lib/calculator'
 
 type Props = {
   win: number
@@ -8,7 +9,7 @@ type Props = {
 const RADIUS = 35
 function CircularRateBar({ win, loss }: Props) {
   const circumference = useMemo(() => Math.PI * (RADIUS * 2), [])
-  const winRate = useMemo(() => Math.floor((win / (win + loss)) * 100), [win, loss])
+  const winRate = useMemo(() => calculator.winRate(win, loss), [win, loss])
   const winDashoffset = useMemo(() => ((100 - winRate) / 100) * circumference, [
     winRate,
     circumference,

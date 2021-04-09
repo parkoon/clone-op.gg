@@ -1,6 +1,7 @@
 const calculator = {
   winRate(win: number, loss: number) {
-    return loss === 0 ? 100 : Math.floor((win / (win + loss)) * 100)
+    const result = Math.floor((win / (win + loss)) * 100)
+    return isNaN(result) ? 0 : result
   },
   csPerMinute(cs: number) {
     return (cs / 60).toFixed(1)
@@ -22,7 +23,8 @@ const calculator = {
     return Math.floor((positionCount / totalGameCount) * 100)
   },
   killShare(kill: number, assist: number, death: number) {
-    return Math.floor((kill / (kill + assist + death)) * 100)
+    const result = Math.floor((kill / (kill + assist + death)) * 100)
+    return isNaN(result) ? 0 : result
   },
 }
 
