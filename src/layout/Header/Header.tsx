@@ -80,6 +80,7 @@ function Header() {
           }}
           onBlur={() => setFocused(false)}
         />
+
         {!initialLoading && hasResult && focused && (
           <SummonerList>
             <SummonerItem onClick={() => handleSummonerClick(summoner.name)}>
@@ -96,7 +97,7 @@ function Header() {
           </SummonerList>
         )}
 
-        {!hasResult && searchHistoryVisibility && <SearchHistory ref={historyRef} />}
+        {!summonerName && searchHistoryVisibility && <SearchHistory ref={historyRef} />}
       </SearchWrapper>
     </Wrapper>
   )
