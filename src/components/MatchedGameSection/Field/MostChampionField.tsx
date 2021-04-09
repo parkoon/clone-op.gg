@@ -1,11 +1,10 @@
-import { lighten } from 'polished'
-import { AiFillSmile } from 'react-icons/ai'
 import styled from 'styled-components'
 import theme from '../../../assets/styles/theme'
 import calculator from '../../../lib/calculator'
 import { Champion } from '../../../model/Champion'
 import ChampionProfile from '../../ChampionProfile'
 import { VerticalDivider } from '../../Divider'
+import { DefaultChampion } from '../../Icons'
 import { Text } from '../../Typography'
 
 type Props = {
@@ -49,7 +48,7 @@ function EmptyChampion() {
   return (
     <EmptyWrapper>
       <IconWrapper>
-        <AiFillSmile size={20} color={lighten(0.2, theme.color.grey[4])} />
+        <DefaultChampion />
       </IconWrapper>
       <Text fontSize={11} color={theme.color.grey[4]}>
         챔피언 정보가 없습니다.
